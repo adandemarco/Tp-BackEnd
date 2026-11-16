@@ -1,0 +1,8 @@
+# Variables de entorno y contraseñas
+.env
+
+# Dependencias de Node.js
+node_modules/
+
+# Archivos temporales
+*.log
