@@ -1,25 +1,13 @@
-const express = require('express');
-const peritosRoutes = require('./routes/peritosRoutes');
-const errorHandler = require('./middlewares/errorHandler');
+const app = require('./app');
 
-const app = express();
-const PORT = 3000;
+console.log('Aplicación importada correctamente');
 
-app.use(express.json());
+const PORT = 3001;
 
-app.use('/api/v1/peritos', peritosRoutes);
-
-
-app.get('/probar-error', (req, res, next) => {
-    const error = new Error("Error de prueba");
-    error.status = 404;
-
-    next(error);
+const servidor = app.listen(PORT, () => {
+    console.log(`Servidor iniciado en http://localhost:${PORT}`);
 });
 
-
-app.use(errorHandler);
-
-app.listen(PORT, () => {
-    console.log(`Servidor escuchando en http://localhost:${PORT}`);
+servidor.on('error', (error) => {
+    console.error('Error al iniciar el servidor:', error);
 });
